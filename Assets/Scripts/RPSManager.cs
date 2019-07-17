@@ -8,14 +8,19 @@ public class RPSManager : MonoBehaviour
 
     private Text userChoice;
     private Text resultText;
+	private InputField inputField;
 
     private string[] options = new string[3] { "piedra", "papel", "tijeras" };
+	
+	void Start() 
+	{ 
+		userChoice = GameObject.FindGameObjectWithTag("UserInput").GetComponent<Text>();
+        resultText = GameObject.FindGameObjectWithTag("Result").GetComponent<Text>();
+        inputField = GameObject.FindGameObjectWithTag("InputField").GetComponent<InputField>();
+	}
 
     public void GameProcess()
     {
-        userChoice = GameObject.FindGameObjectWithTag("UserInput").GetComponent<Text>();
-        resultText = GameObject.FindGameObjectWithTag("Result").GetComponent<Text>();
-
         bool validWord = false;
 
         for (int i = 0; i < options.Length; i++)
@@ -82,5 +87,11 @@ public class RPSManager : MonoBehaviour
         }
 
         return 0;
+    }
+
+    public void EraseText()
+    {
+        inputField.text = "";
+        resultText.text = "";
     }
 }
